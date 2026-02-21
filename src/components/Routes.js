@@ -1,12 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import HomeScreen from './screens/HomeScreen'
-import BankScreen from './screens/Menu/BankScreen'
-import BankScreens from './screens/BankScreens'
-import StockScreen from './screens/Menu/StockScreen'
-import StockScreens from './screens/StockScreens'
+import HomeScreen from '../screens/HomeScreen'
+import BankScreen from '../screens/Menu/BankScreen'
+import bankScreens from '../groupedScreens/bankScreens'
+import StockScreen from '../screens/Menu/StockScreen'
+import stockScreens from '../groupedScreens/stockScreens'
 
-import routesStyles from './styles/routesStyles'
+import routesStyles from '../styles/routesStyles'
 
 const Routes = () => {
   const Stack = createNativeStackNavigator()
@@ -30,7 +30,7 @@ const Routes = () => {
       options={ getScreenOptions('Bank') }
     />
 
-    <Stack.Screen name='BankAddTransaction' component={BankScreens.AddTransaction}
+    <Stack.Screen name='BankAddTransaction' component={bankScreens.AddTransactionScreen}
       options={ getScreenOptions('Add Transaction') }
     />
 
@@ -38,7 +38,7 @@ const Routes = () => {
       options={ getScreenOptions('Stock') }
     />
 
-    <Stack.Screen name='StockAddTransaction' component={StockScreens.AddTransaction}
+    <Stack.Screen name='StockAddTransaction' component={stockScreens.AddTransactionScreen}
       options={ getScreenOptions('Add Transaction') }
     />
 

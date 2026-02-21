@@ -1,9 +1,9 @@
 import { Text } from 'react-native'
 
-const AddTransaction = () => {
+const AddTransactionScreen = () => {
   return (
     <Text>Stock Screens - Add Transaction</Text>
   )
 }
 
-export default AddTransaction
+export default AddTransactionScreen
