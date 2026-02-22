@@ -1,13 +1,12 @@
 import { ScrollView, View, useWindowDimensions } from 'react-native'
-import styles from '../styles/homeScreenStyles'
+import styles from '../styles/stockScreenStyles'
 import MenuItem from '../components/MenuItem'
 
-const HomeScreen = ({ navigation }) => {
-  const iconDirPath = '../../assets/home/'
+const StockScreen = ({ navigation }) => {
+  const iconDirPath = '../../assets/stock/'
   
   const menuOptions = [
-    { screen: 'Bank', icon: require(`${iconDirPath}bank.png`), title: 'Bank' },
-    { screen: 'Stock', icon: require(`${iconDirPath}stock.png`), title: 'Stock' }
+    { screen: 'StockAddTransaction', icon: require(`${iconDirPath}add-transaction.png`), title: 'Transaction' }
   ]
 
   let screenWidth = useWindowDimensions().width
@@ -42,4 +41,4 @@ const HomeScreen = ({ navigation }) => {
   )
 }
 
-export default HomeScreen
+export default StockScreen

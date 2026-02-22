@@ -1,12 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import HomeScreen from '../screens/HomeScreen'
-import BankScreen from '../screens/Menu/BankScreen'
+import BankScreen from '../screens/BankScreen'
 import bankScreens from '../groupedScreens/bankScreens'
-import StockScreen from '../screens/Menu/StockScreen'
+import StockScreen from '../screens/StockScreen'
 import stockScreens from '../groupedScreens/stockScreens'
 
-import routesStyles from '../styles/routesStyles'
+import styles from '../styles/routesStyles'
 
 const Routes = () => {
   const Stack = createNativeStackNavigator()
@@ -14,8 +14,8 @@ const Routes = () => {
   const getScreenOptions = title => {
     return {
       title,
-      headerStyle: routesStyles.header.style,
-      headerTintColor: routesStyles.header.tintColor
+      headerStyle: styles.header.style,
+      headerTintColor: styles.header.tintColor
     }
   }
 
