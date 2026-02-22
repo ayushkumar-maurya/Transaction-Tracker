@@ -1,5 +1,5 @@
 import { Text, TouchableOpacity, Image } from 'react-native'
-import styles from '../styles/menuItemStyles'
+import styles from '../../styles/menuItemStyles'
 
 const MenuItem = ({ navigation, screen, icon, title }) => {
   return (

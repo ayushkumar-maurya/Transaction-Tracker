@@ -1,6 +1,6 @@
 import { ScrollView, View, useWindowDimensions } from 'react-native'
 import styles from '../styles/bankScreenStyles'
-import MenuItem from '../components/MenuItem'
+import MenuItem from '../components/Utility/MenuItem'
 
 const BankScreen = ({ navigation }) => {
   const iconDirPath = '../../assets/bank/'
