@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colours.itemFg,
-    fontSize: 18,
+    fontSize: 15,
     marginTop: 5
   }
 });
