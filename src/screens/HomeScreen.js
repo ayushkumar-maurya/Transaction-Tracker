@@ -3,7 +3,7 @@ import styles from '../styles/homeScreenStyles'
 import MenuItem from '../components/MenuItem'
 
 const HomeScreen = ({ navigation }) => {
-  const iconDirPath = '../../assets/menu/'
+  const iconDirPath = '../../assets/home/'
   
   const menuOptions = [
     { screen: 'Bank', icon: require(`${iconDirPath}bank.png`), title: 'Bank' },
