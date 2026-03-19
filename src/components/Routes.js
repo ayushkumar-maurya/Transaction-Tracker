@@ -34,6 +34,10 @@ const Routes = () => {
       options={ getScreenOptions('Add Transaction') }
     />
 
+    <Stack.Screen name='BankAddBank' component={bankScreens.AddBankScreen}
+      options={ getScreenOptions('Add Bank') }
+    />
+
     <Stack.Screen name='Stock' component={StockScreen}
       options={ getScreenOptions('Stock') }
     />

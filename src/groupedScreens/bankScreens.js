@@ -1,5 +1,6 @@
-import AddTransactionScreen from '../screens/Bank/AddTransactionScreen'
+import AddTransactionScreen from '../screens/bank/AddTransactionScreen'
+import AddBankScreen from '../screens/bank/AddBankScreen'
 
-const bankScreens = { AddTransactionScreen }
+const bankScreens = { AddTransactionScreen, AddBankScreen }
 
 export default bankScreens

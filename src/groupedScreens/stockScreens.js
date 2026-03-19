@@ -1,4 +1,4 @@
-import AddTransactionScreen from '../screens/Stock/AddTransactionScreen'
+import AddTransactionScreen from '../screens/stock/AddTransactionScreen'
 
 const stockScreens = { AddTransactionScreen }
 

@@ -6,7 +6,8 @@ const BankScreen = ({ navigation }) => {
   const iconDirPath = '../../assets/bank/'
   
   const menuOptions = [
-    { screen: 'BankAddTransaction', icon: require(`${iconDirPath}add-transaction.png`), title: 'Transaction' }
+    { screen: 'BankAddTransaction', icon: require(`${iconDirPath}add-transaction.png`), title: 'Transaction' },
+    { screen: 'BankAddBank', icon: require(`${iconDirPath}add-bank.png`), title: 'Add Bank' }
   ]
 
   let screenWidth = useWindowDimensions().width
