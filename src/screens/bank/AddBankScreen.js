@@ -55,7 +55,7 @@ const AddBankScreen = () => {
       }
 
       if(bankAdded) {
-        Alert.alert('Add', `Bank ${name} added successfully!`, [{ text: 'OK' }])
+        Alert.alert('Add', `Bank ${postData.name} added successfully!`, [{ text: 'OK' }])
         setName(null)
         setDescription(null)
       }
