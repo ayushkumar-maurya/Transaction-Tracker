@@ -1,6 +1,6 @@
 import { ScrollView, View, useWindowDimensions } from 'react-native'
-import styles from '../styles/homeScreenStyles'
-import MenuItem from '../components/Utility/MenuItem'
+import styles from '../styles/screens/homeScreen'
+import MenuItem from '../components/items/MenuItem'
 
 const HomeScreen = ({ navigation }) => {
   const iconDirPath = '../../assets/home/'

@@ -1,6 +1,6 @@
 import { ScrollView, View, useWindowDimensions } from 'react-native'
-import styles from '../styles/stockScreenStyles'
-import MenuItem from '../components/Utility/MenuItem'
+import styles from '../styles/screens/stockScreen'
+import MenuItem from '../components/items/MenuItem'
 
 const StockScreen = ({ navigation }) => {
   const iconDirPath = '../../assets/stock/'

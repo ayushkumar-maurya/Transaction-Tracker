@@ -6,7 +6,7 @@ import bankScreens from '../groupedScreens/bankScreens'
 import StockScreen from '../screens/StockScreen'
 import stockScreens from '../groupedScreens/stockScreens'
 
-import styles from '../styles/routesStyles'
+import styles from '../styles/components/routes'
 
 const Routes = () => {
   const Stack = createNativeStackNavigator()
