@@ -41,6 +41,13 @@ const menus = {
 
   bank: [
     {
+      title: 'Banks',
+      icon: require(`${assetsPath}bank/banks.png`),
+      navScreen: 'Categories',
+      navParams: { screenTitle: 'Banks', path: 'bank/banks' },
+      newScreen: true 
+    },
+    {
       title: 'Add Bank',
       icon: require(`${assetsPath}bank/add-bank.png`),
       navScreen: 'AddCategory',
@@ -50,6 +57,13 @@ const menus = {
   ],
 
   creditCard: [
+    {
+      title: 'Credit Cards',
+      icon: require(`${assetsPath}credit-card/credit-cards.png`),
+      navScreen: 'Categories',
+      navParams: { screenTitle: 'Credit Cards', path: 'creditcard/creditcards' },
+      newScreen: true 
+    },
     {
       title: 'Add Credit Card',
       icon: require(`${assetsPath}credit-card/add-credit-card.png`),
@@ -61,6 +75,13 @@ const menus = {
 
   stock: [
     {
+      title: 'Stocks',
+      icon: require(`${assetsPath}stock/stocks.png`),
+      navScreen: 'Categories',
+      navParams: { screenTitle: 'Stocks', path: 'stock/stocks' },
+      newScreen: true 
+    },
+    {
       title: 'Add Stock',
       icon: require(`${assetsPath}stock/add-stock.png`),
       navScreen: 'AddCategory',
@@ -70,6 +91,13 @@ const menus = {
   ],
 
   mutualFund: [
+    {
+      title: 'Mutual Funds',
+      icon: require(`${assetsPath}mutual-fund/mutual-funds.png`),
+      navScreen: 'Categories',
+      navParams: { screenTitle: 'Mutual Funds', path: 'mutualfund/mutualfunds' },
+      newScreen: true 
+    },
     {
       title: 'Add Mutual Fund',
       icon: require(`${assetsPath}mutual-fund/add-mutual-fund.png`),
@@ -81,10 +109,17 @@ const menus = {
 
   misc: [
     {
+      title: 'Misc Categories',
+      icon: require(`${assetsPath}misc/misc-categories.png`),
+      navScreen: 'Categories',
+      navParams: { screenTitle: 'Misc Categories', path: 'misc/misccategories' },
+      newScreen: true 
+    },
+    {
       title: 'Add Misc Category',
       icon: require(`${assetsPath}misc/add-misc-category.png`),
       navScreen: 'AddCategory',
-      navParams: { screenTitle: 'Add Misc Category', path: 'misccategory/misccategory' },
+      navParams: { screenTitle: 'Add Misc Category', path: 'misc/misccategory' },
       newScreen: true 
     }
   ]
