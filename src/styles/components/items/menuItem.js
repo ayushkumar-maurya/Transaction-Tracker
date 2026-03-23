@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native"
 import colours from "../../../colours"
 
 const styles = StyleSheet.create({
-  option: {
+  item: {
     height: 100,
     width: 100,
     backgroundColor: colours.menuItemBg,

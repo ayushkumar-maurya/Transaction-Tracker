@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   KeyboardAvoidingView,
   Platform,
@@ -10,14 +10,20 @@ import {
   Alert
 } from 'react-native'
 
-import { API_URL } from '../../../config'
-import styles from '../../styles/screens/bank/addBankScreen'
-import colours from '../../colours'
+import { API_URL } from '../../config'
+import styles from '../styles/screens/addCategoryScreen'
+import colours from '../colours'
 
-const AddBankScreen = () => {
+const AddCategoryScreen = ({ route, navigation }) => {
+  const path = route.params.path
+
   const [name, setName] = useState(null)
   const [description, setDescription] = useState(null)
   const [disableAddBtn, setDisableAddBtn] = useState(false)
+
+  useEffect(() => {
+    navigation.setOptions({ title: route.params.screenTitle })
+  }, [])
 
   const sendAddRequest = async () => {
     setDisableAddBtn(true)
@@ -26,17 +32,17 @@ const AddBankScreen = () => {
   
     try {
       if(!postData.name)
-        throw new Error('Please enter bank name!')
+        throw new Error('Please enter the name!')
       postData.name = postData.name.trim()
       if(postData.name.length === 0)
-        throw new Error('Please enter valid bank name!')
+        throw new Error('Please enter valid name!')
 
       if(postData.description)
         postData.description = postData.description.trim()
 
-      let bankAdded = false
+      let categoryAdded = false
 
-      const url = `${API_URL}bank/bank`;
+      const url = `${API_URL}${path}`;
       let params = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -48,19 +54,19 @@ const AddBankScreen = () => {
         let resData = await res.json()
         if(resData) {
           if(resData.insertedId)
-            bankAdded = true
+            categoryAdded = true
           else if(resData.error)
             throw new Error(resData.error)
         }
       }
 
-      if(bankAdded) {
-        Alert.alert('Add', `Bank ${postData.name} added successfully!`, [{ text: 'OK' }])
+      if(categoryAdded) {
+        Alert.alert('Add', `${postData.name} added successfully!`, [{ text: 'OK' }])
         setName(null)
         setDescription(null)
       }
       else
-        throw new Error('Some error occurred while adding Bank. Please try again!')
+        throw new Error('Some error occurred. Please try again!')
     }
     catch(err) {
       Alert.alert('Add', err.message, [{ text: 'OK' }])
@@ -115,4 +121,4 @@ const AddBankScreen = () => {
   )
 }
 
-export default AddBankScreen
+export default AddCategoryScreen

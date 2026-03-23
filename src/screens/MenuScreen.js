@@ -1,33 +1,32 @@
+import { useEffect } from 'react'
 import { ScrollView, View, useWindowDimensions } from 'react-native'
-import styles from '../styles/screens/stockScreen'
+import styles from '../styles/screens/menuScreen'
+import menus from '../menus'
 import MenuItem from '../components/items/MenuItem'
 
-const StockScreen = ({ navigation }) => {
-  const iconDirPath = '../../assets/stock/'
-  
-  const menuOptions = [
-    { screen: 'StockAddTransaction', icon: require(`${iconDirPath}add-transaction.png`), title: 'Transaction' }
-  ]
+const MenuScreen = ({ route, navigation }) => {
+  const menuItems = menus[route.params.menu]
 
   let screenWidth = useWindowDimensions().width
   // 20 is the container padding.
   // 100 + 20 is the item's width + margin.
   let nItemsInRow = Math.trunc((screenWidth - 20) / (100 + 20))
-  let nItemsInLastRow = menuOptions.length % nItemsInRow
+  let nItemsInLastRow = menuItems.length % nItemsInRow
   if(nItemsInLastRow === 0)
     nItemsInLastRow = nItemsInRow
   let nEmptyItemsToAdd = nItemsInRow - nItemsInLastRow
+
+  useEffect(() => {
+    navigation.setOptions({ title: route.params.screenTitle })
+  }, [])
   
   return (
     <ScrollView style={styles.container}>
       <View style={styles.childContainer}>
         
-        {menuOptions.map((opt, index) =>
+        {menuItems.map((item, index) =>
           <MenuItem
-            navigation={navigation}
-            screen={opt.screen}
-            icon={opt.icon}
-            title={opt.title}
+            item={item}
             key={index}
           />
         )}
@@ -41,4 +40,4 @@ const StockScreen = ({ navigation }) => {
   )
 }
 
-export default StockScreen
+export default MenuScreen
