@@ -1,17 +1,17 @@
 import { StyleSheet } from "react-native"
-import colours from "../colours";
+import colours from "../../../colours"
 
 const styles = StyleSheet.create({
-  option: {
+  item: {
     height: 100,
     width: 100,
-    backgroundColor: colours.itemBg,
+    backgroundColor: colours.menuItemBg,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
     margin: 10,
     borderWidth: 1,
-    borderColor: colours.itemBorder,
+    borderColor: colours.menuItemBorder,
     borderRadius: 15,
   },
   icon: {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     width: 35
   },
   title: {
-    color: colours.itemFg,
+    color: colours.menuItemFg,
     fontSize: 15,
     marginTop: 5
   }

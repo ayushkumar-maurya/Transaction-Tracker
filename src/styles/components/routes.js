@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native"
-import colours from '../colours'
+import colours from "../../colours"
 
 const styles = StyleSheet.create({
   header: {
     style: {
-      backgroundColor: colours.primaryBg
+      backgroundColor: colours.headerBg
     },
-    tintColor: colours.primaryFg
+    tintColor: colours.headerFg
   }
 });
 
