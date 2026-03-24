@@ -50,7 +50,7 @@ const menus = {
     {
       title: 'Add Bank',
       icon: require(`${assetsPath}bank/add-bank.png`),
-      navScreen: 'AddCategory',
+      navScreen: 'EditCategory',
       navParams: { screenTitle: 'Add Bank', path: 'bank/bank' },
       newScreen: true 
     }
@@ -67,7 +67,7 @@ const menus = {
     {
       title: 'Add Credit Card',
       icon: require(`${assetsPath}credit-card/add-credit-card.png`),
-      navScreen: 'AddCategory',
+      navScreen: 'EditCategory',
       navParams: { screenTitle: 'Add Credit Card', path: 'creditcard/creditcard' },
       newScreen: true 
     }
@@ -84,7 +84,7 @@ const menus = {
     {
       title: 'Add Stock',
       icon: require(`${assetsPath}stock/add-stock.png`),
-      navScreen: 'AddCategory',
+      navScreen: 'EditCategory',
       navParams: { screenTitle: 'Add Stock', path: 'stock/stock' },
       newScreen: true 
     }
@@ -101,7 +101,7 @@ const menus = {
     {
       title: 'Add Mutual Fund',
       icon: require(`${assetsPath}mutual-fund/add-mutual-fund.png`),
-      navScreen: 'AddCategory',
+      navScreen: 'EditCategory',
       navParams: { screenTitle: 'Add Mutual Fund', path: 'mutualfund/mutualfund' },
       newScreen: true 
     }
@@ -118,7 +118,7 @@ const menus = {
     {
       title: 'Add Misc Category',
       icon: require(`${assetsPath}misc/add-misc-category.png`),
-      navScreen: 'AddCategory',
+      navScreen: 'EditCategory',
       navParams: { screenTitle: 'Add Misc Category', path: 'misc/misccategory' },
       newScreen: true 
     }

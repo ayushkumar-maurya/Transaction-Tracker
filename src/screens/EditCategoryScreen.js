@@ -11,10 +11,10 @@ import {
 } from 'react-native'
 
 import { API_URL } from '../../config'
-import styles from '../styles/screens/addCategoryScreen'
+import styles from '../styles/screens/editCategoryScreen'
 import colours from '../colours'
 
-const AddCategoryScreen = ({ route, navigation }) => {
+const EditCategoryScreen = ({ route, navigation }) => {
   const path = route.params.path
 
   const [name, setName] = useState(null)
@@ -121,4 +121,4 @@ const AddCategoryScreen = ({ route, navigation }) => {
   )
 }
 
-export default AddCategoryScreen
+export default EditCategoryScreen
