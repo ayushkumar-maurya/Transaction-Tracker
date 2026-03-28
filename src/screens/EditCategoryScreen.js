@@ -16,12 +16,14 @@ import styles from '../styles/screens/editCategoryScreen'
 import colours from '../colours'
 
 const EditCategoryScreen = ({ route }) => {
-  const { screenTitle, path, category } = route.params
   const navigation = useNavigation()
+  const { screenTitle, path, category } = route.params
+  const activity = category ? 'UPDATE' : 'ADD'
+  const capActivity = activity.charAt(0).toUpperCase() + activity.slice(1).toLowerCase()
 
   const [name, setName] = useState(null)
   const [description, setDescription] = useState(null)
-  const [disableAddBtn, setDisableAddBtn] = useState(false)
+  const [disableEditBtn, setDisableEditBtn] = useState(false)
 
   useEffect(() => {
     navigation.setOptions({ title: screenTitle })
@@ -32,8 +34,8 @@ const EditCategoryScreen = ({ route }) => {
     }
   }, [])
 
-  const sendAddRequest = async () => {
-    setDisableAddBtn(true)
+  const sendEditRequest = async () => {
+    setDisableEditBtn(true)
 
     const postData = { name, description }
   
@@ -47,7 +49,7 @@ const EditCategoryScreen = ({ route }) => {
       if(postData.description)
         postData.description = postData.description.trim()
 
-      let categoryAdded = false
+      let categoryEdited = false
 
       const url = `${API_URL}${path}`;
       let params = {
@@ -61,14 +63,14 @@ const EditCategoryScreen = ({ route }) => {
         let resData = await res.json()
         if(resData) {
           if(resData.insertedId)
-            categoryAdded = true
+            categoryEdited = true
           else if(resData.error)
             throw new Error(resData.error)
         }
       }
 
-      if(categoryAdded) {
-        Alert.alert('Add', `${postData.name} added successfully!`, [{ text: 'OK' }])
+      if(categoryEdited) {
+        Alert.alert(capActivity, `${postData.name} ${activity.toLowerCase()}ed successfully!`, [{ text: 'OK' }])
         setName(null)
         setDescription(null)
       }
@@ -76,10 +78,10 @@ const EditCategoryScreen = ({ route }) => {
         throw new Error('Some error occurred. Please try again!')
     }
     catch(err) {
-      Alert.alert('Add', err.message, [{ text: 'OK' }])
+      Alert.alert(capActivity, err.message, [{ text: 'OK' }])
     }
     finally {
-      setDisableAddBtn(false)
+      setDisableEditBtn(false)
     }
   }
 
@@ -118,8 +120,8 @@ const EditCategoryScreen = ({ route }) => {
               : {cursorColor: colours.textInput}) }
           />
 
-          <TouchableOpacity onPress={sendAddRequest} style={styles.button} disabled={disableAddBtn}>
-            <Text style={styles.btnText}>Add</Text>
+          <TouchableOpacity onPress={sendEditRequest} style={styles.button} disabled={disableEditBtn}>
+            <Text style={styles.btnText}>{ capActivity }</Text>
           </TouchableOpacity>
 
         </View>
