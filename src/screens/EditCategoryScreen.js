@@ -17,7 +17,7 @@ import colours from '../colours'
 
 const EditCategoryScreen = ({ route }) => {
   const navigation = useNavigation()
-  const { screenTitle, path, category } = route.params
+  const { screenTitle, method, path, category } = route.params
   const activity = category ? 'UPDATE' : 'ADD'
   const capActivity = activity.charAt(0).toUpperCase() + activity.slice(1).toLowerCase()
 
@@ -28,7 +28,7 @@ const EditCategoryScreen = ({ route }) => {
   useEffect(() => {
     navigation.setOptions({ title: screenTitle })
 
-    if(category) {
+    if(activity === 'UPDATE') {
       setName(category.name)
       setDescription(category.description)
     }
@@ -38,6 +38,9 @@ const EditCategoryScreen = ({ route }) => {
     setDisableEditBtn(true)
 
     const postData = { name, description }
+
+    if(activity === 'UPDATE')
+      postData.id = category.id
   
     try {
       if(!postData.name)
@@ -53,7 +56,7 @@ const EditCategoryScreen = ({ route }) => {
 
       const url = `${API_URL}${path}`;
       let params = {
-        method: 'POST',
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(postData)
       }
@@ -62,7 +65,7 @@ const EditCategoryScreen = ({ route }) => {
       if(res) {
         let resData = await res.json()
         if(resData) {
-          if(resData.insertedId)
+          if((activity === 'ADD' && resData.insertedId) || (activity === 'UPDATE' && resData.affectedRows))
             categoryEdited = true
           else if(resData.error)
             throw new Error(resData.error)
@@ -70,7 +73,7 @@ const EditCategoryScreen = ({ route }) => {
       }
 
       if(categoryEdited) {
-        Alert.alert(capActivity, `${postData.name} ${activity.toLowerCase()}ed successfully!`, [{ text: 'OK' }])
+        Alert.alert(capActivity, `${postData.name} ${activity === 'ADD' ? 'added' : 'updated'} successfully!`, [{ text: 'OK' }])
         setName(null)
         setDescription(null)
       }
