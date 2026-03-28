@@ -6,7 +6,7 @@ import styles from '../styles/screens/categoriesScreen'
 import CategoryRowItem from '../components/items/CategoryRowItem'
 
 const CategoriesScreen = ({ route, navigation }) => {
-  const { path, screenTitle } = route.params
+  const { screenTitle, path, updateInfo } = route.params
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const CategoriesScreen = ({ route, navigation }) => {
   return (
     <ScrollView style={styles.container}>
       {categories.map((item, index) =>
-        <CategoryRowItem item={item} index={index} key={index} />
+        <CategoryRowItem category={item} index={index} updateInfo={updateInfo} key={index} />
       )}
     </ScrollView>
   )

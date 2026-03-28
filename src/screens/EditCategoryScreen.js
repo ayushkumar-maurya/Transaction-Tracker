@@ -9,20 +9,27 @@ import {
   Text,
   Alert
 } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import { API_URL } from '../../config'
 import styles from '../styles/screens/editCategoryScreen'
 import colours from '../colours'
 
-const EditCategoryScreen = ({ route, navigation }) => {
-  const path = route.params.path
+const EditCategoryScreen = ({ route }) => {
+  const { screenTitle, path, category } = route.params
+  const navigation = useNavigation()
 
   const [name, setName] = useState(null)
   const [description, setDescription] = useState(null)
   const [disableAddBtn, setDisableAddBtn] = useState(false)
 
   useEffect(() => {
-    navigation.setOptions({ title: route.params.screenTitle })
+    navigation.setOptions({ title: screenTitle })
+
+    if(category) {
+      setName(category.name)
+      setDescription(category.description)
+    }
   }, [])
 
   const sendAddRequest = async () => {
