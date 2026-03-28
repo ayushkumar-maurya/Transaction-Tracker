@@ -45,7 +45,7 @@ const menus = {
       icon: require(`${assetsPath}bank/banks.png`),
       navScreen: 'Categories',
       navParams: { screenTitle: 'Banks', path: 'bank/banks',
-        updateInfo: { screenTitle: 'Update Bank', method: 'PUT', path: 'bank/bank' }
+        updateInfo: { screenTitle: 'Update Bank', method: 'PUT', path: 'bank/bank', deletePath: 'bank/bank' }
       },
       newScreen: true 
     },
@@ -64,7 +64,7 @@ const menus = {
       icon: require(`${assetsPath}credit-card/credit-cards.png`),
       navScreen: 'Categories',
       navParams: { screenTitle: 'Credit Cards', path: 'creditcard/creditcards',
-        updateInfo: { screenTitle: 'Update Credit Card', method: 'PUT', path: 'creditcard/creditcard' }
+        updateInfo: { screenTitle: 'Update Credit Card', method: 'PUT', path: 'creditcard/creditcard', deletePath: 'creditcard/creditcard' }
       },
       newScreen: true 
     },
@@ -83,7 +83,7 @@ const menus = {
       icon: require(`${assetsPath}stock/stocks.png`),
       navScreen: 'Categories',
       navParams: { screenTitle: 'Stocks', path: 'stock/stocks',
-        updateInfo: { screenTitle: 'Update Stock', method: 'PUT', path: 'stock/stock' }
+        updateInfo: { screenTitle: 'Update Stock', method: 'PUT', path: 'stock/stock', deletePath: 'stock/stock' }
       },
       newScreen: true 
     },
@@ -102,7 +102,7 @@ const menus = {
       icon: require(`${assetsPath}mutual-fund/mutual-funds.png`),
       navScreen: 'Categories',
       navParams: { screenTitle: 'Mutual Funds', path: 'mutualfund/mutualfunds',
-        updateInfo: { screenTitle: 'Update Mutual Fund', method: 'PUT', path: 'mutualfund/mutualfund' }
+        updateInfo: { screenTitle: 'Update Mutual Fund', method: 'PUT', path: 'mutualfund/mutualfund', deletePath: 'mutualfund/mutualfund' }
       },
       newScreen: true 
     },
@@ -121,7 +121,7 @@ const menus = {
       icon: require(`${assetsPath}misc/misc-categories.png`),
       navScreen: 'Categories',
       navParams: { screenTitle: 'Misc Categories', path: 'misc/misccategories',
-        updateInfo: { screenTitle: 'Update Misc Category', method: 'PUT', path: 'misc/misccategory' }
+        updateInfo: { screenTitle: 'Update Misc Category', method: 'PUT', path: 'misc/misccategory', deletePath: 'misc/misccategory' }
       },
       newScreen: true 
     },

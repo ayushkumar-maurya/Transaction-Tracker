@@ -17,13 +17,13 @@ import colours from '../colours'
 
 const EditCategoryScreen = ({ route }) => {
   const navigation = useNavigation()
-  const { screenTitle, method, path, category } = route.params
+  const { screenTitle, method, path, deletePath, category } = route.params
   const activity = category ? 'UPDATE' : 'ADD'
   const capActivity = activity.charAt(0).toUpperCase() + activity.slice(1).toLowerCase()
 
   const [name, setName] = useState(null)
   const [description, setDescription] = useState(null)
-  const [disableEditBtn, setDisableEditBtn] = useState(false)
+  const [disableBtn, setDisableBtn] = useState(false)
 
   useEffect(() => {
     navigation.setOptions({ title: screenTitle })
@@ -35,7 +35,7 @@ const EditCategoryScreen = ({ route }) => {
   }, [])
 
   const sendEditRequest = async () => {
-    setDisableEditBtn(true)
+    setDisableBtn(true)
 
     const postData = { name, description }
 
@@ -73,9 +73,13 @@ const EditCategoryScreen = ({ route }) => {
       }
 
       if(categoryEdited) {
+        if(activity === 'ADD') {
+          setName(null)
+          setDescription(null)
+        }
+        else if(activity === 'UPDATE')
+          navigation.goBack()
         Alert.alert(capActivity, `${postData.name} ${activity === 'ADD' ? 'added' : 'updated'} successfully!`, [{ text: 'OK' }])
-        setName(null)
-        setDescription(null)
       }
       else
         throw new Error('Some error occurred. Please try again!')
@@ -84,7 +88,47 @@ const EditCategoryScreen = ({ route }) => {
       Alert.alert(capActivity, err.message, [{ text: 'OK' }])
     }
     finally {
-      setDisableEditBtn(false)
+      setDisableBtn(false)
+    }
+  }
+
+  const sendDeleteRequest = async () => {
+    setDisableBtn(true)
+    const postData = { id: category.id }
+
+    try {
+      let categoryDeleted = false
+
+      const url = `${API_URL}${deletePath}`;
+      let params = {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(postData)
+      }
+
+      const res = await fetch(url, params)
+      if(res) {
+        let resData = await res.json()
+        if(resData) {
+          if(resData.affectedRows)
+            categoryDeleted = true
+          else if(resData.error)
+            throw new Error(resData.error)
+        }
+      }
+
+      if(categoryDeleted) {
+        navigation.goBack()
+        Alert.alert('Delete', `${category.name} deleted successfully!`, [{ text: 'OK' }])
+      }
+      else
+        throw new Error('Some error occurred. Please try again!')
+    }
+    catch(err) {
+      Alert.alert('Delete', err.message, [{ text: 'OK' }])
+    }
+    finally {
+      setDisableBtn(false)
     }
   }
 
@@ -123,9 +167,31 @@ const EditCategoryScreen = ({ route }) => {
               : {cursorColor: colours.textInput}) }
           />
 
-          <TouchableOpacity onPress={sendEditRequest} style={styles.button} disabled={disableEditBtn}>
-            <Text style={styles.btnText}>{ capActivity }</Text>
-          </TouchableOpacity>
+          <View style={styles.btnContainer}>
+            <TouchableOpacity
+              onPress={sendEditRequest}
+              style={[styles.button, styles.editBtn]}
+              disabled={disableBtn}
+            >
+              <Text style={styles.btnText}>{ capActivity }</Text>
+            </TouchableOpacity>
+
+            { activity === 'UPDATE' && <TouchableOpacity
+              onPress={sendDeleteRequest}
+              style={[styles.button, styles.deleteBtn]}
+              disabled={disableBtn}
+            >
+              <Text style={styles.btnText}>Delete</Text>
+            </TouchableOpacity> }
+
+            { activity === 'UPDATE' && <TouchableOpacity
+              onPress={navigation.goBack}
+              style={[styles.button, styles.cancelBtn]}
+              disabled={disableBtn}
+            >
+              <Text style={styles.btnText}>Cancel</Text>
+            </TouchableOpacity> }
+          </View>
 
         </View>
       </ScrollView>

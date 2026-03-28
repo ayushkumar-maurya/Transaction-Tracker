@@ -27,5 +27,7 @@ export default {
   textInputBorder: '#CCC',
 
   buttonBg: common.colour1,
-  buttonFg: common.colour2 
+  buttonFg: common.colour2,
+  buttonDanger: '#DC3546EF',
+  buttonCancel: '#6C757D'
 }
