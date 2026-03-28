@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
-import { ScrollView, Alert } from 'react-native'
+import { ScrollView, Alert, ActivityIndicator } from 'react-native'
 import { API_URL } from '../../config'
-
 import styles from '../styles/screens/categoriesScreen'
 import CategoryRowItem from '../components/items/CategoryRowItem'
+import colours from '../colours'
 
 const CategoriesScreen = ({ route, navigation }) => {
   const { screenTitle, path, updateInfo } = route.params
   const [categories, setCategories] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     navigation.setOptions({ title: screenTitle })
@@ -20,6 +21,7 @@ const CategoriesScreen = ({ route, navigation }) => {
           headers: { 'Content-Type': 'application/json' }
         }
         const res = await fetch(url, params)
+        setLoading(false)
         if(!res)
           throw new Error('Unable to fetch records!')
         let resData = await res.json()
@@ -36,11 +38,14 @@ const CategoriesScreen = ({ route, navigation }) => {
   }, [])
 
   return (
-    <ScrollView style={styles.container}>
-      {categories.map((item, index) =>
-        <CategoryRowItem category={item} index={index} updateInfo={updateInfo} key={index} />
-      )}
-    </ScrollView>
+    <>
+      { loading && <ActivityIndicator size="large" color={colours.spinner} style={styles.spinner} /> }
+      <ScrollView style={styles.container}>
+        {categories.map((item, index) =>
+          <CategoryRowItem category={item} index={index} updateInfo={updateInfo} key={index} />
+        )}
+      </ScrollView>
+    </>
   )
 }
 
