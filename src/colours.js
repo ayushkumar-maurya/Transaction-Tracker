@@ -13,6 +13,11 @@ export default {
   menuItemFg: common.colour1,
   menuItemBorder: '#CCC',
 
+  listItemBg: common.colour2,
+  listItemTitle: common.colour1,
+  listItemDesc: '#777',
+  listItemBorder: '#CCC',
+
   inputLabel: common.colour1,
   
   textInput: common.colour1,
