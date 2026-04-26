@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { ScrollView, Alert, ActivityIndicator } from 'react-native'
 import { useIsFocused } from '@react-navigation/native'
-import { API_URL } from '../../config'
+import { API_URL } from '../config'
 import styles from '../styles/screens/categoriesScreen'
 import CategoryRowItem from '../components/items/CategoryRowItem'
-import colours from '../colours'
+import colours from '../styles/colours'
 
 const CategoriesScreen = ({ route, navigation }) => {
   const { screenTitle, path, updateInfo } = route.params

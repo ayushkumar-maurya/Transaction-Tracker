@@ -11,9 +11,9 @@ import {
 } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-import { API_URL } from '../../config'
+import { API_URL } from '../config'
 import styles from '../styles/screens/editCategoryScreen'
-import colours from '../colours'
+import colours from '../styles/colours'
 
 const EditCategoryScreen = ({ route }) => {
   const navigation = useNavigation()

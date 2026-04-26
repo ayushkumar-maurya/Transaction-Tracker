@@ -1,4 +1,4 @@
-const assetsPath = '../assets/'
+const assetsPath = '../../assets/'
 
 const menus = {
   home: [

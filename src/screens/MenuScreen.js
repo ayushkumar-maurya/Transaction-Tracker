@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { ScrollView, View, useWindowDimensions } from 'react-native'
 import styles from '../styles/screens/menuScreen'
-import menus from '../menus'
+import menus from '../data/menus'
 import MenuItem from '../components/items/MenuItem'
 
 const MenuScreen = ({ route, navigation }) => {
