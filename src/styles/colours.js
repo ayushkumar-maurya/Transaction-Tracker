@@ -13,6 +13,13 @@ export default {
   menuItemFg: common.colour1,
   menuItemBorder: '#CCC',
 
+  spinner: common.colour1,
+
+  listItemBg: common.colour2,
+  listItemTitle: common.colour1,
+  listItemDesc: '#777',
+  listItemBorder: '#CCC',
+
   inputLabel: common.colour1,
   
   textInput: common.colour1,
@@ -20,5 +27,7 @@ export default {
   textInputBorder: '#CCC',
 
   buttonBg: common.colour1,
-  buttonFg: common.colour2 
+  buttonFg: common.colour2,
+  buttonDanger: '#DC3546EF',
+  buttonCancel: '#6C757D'
 }

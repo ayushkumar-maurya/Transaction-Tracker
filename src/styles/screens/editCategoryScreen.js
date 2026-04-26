@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native"
-import colours from "../../colours"
+import colours from "../colours"
 
 const styles = StyleSheet.create({
   keyboardAvoidingView: {
@@ -30,15 +30,29 @@ const styles = StyleSheet.create({
     height: 100,
     textAlignVertical: 'top'
   },
+  btnContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 15
+  },
   button: {
-    backgroundColor: colours.buttonBg,
-    marginBottom: 15,
+    marginLeft: 10,
+    marginRight: 10,
     borderRadius: 5,
-    alignSelf: 'center',
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 20,
     paddingRight: 20
+  },
+  editBtn: {
+    backgroundColor: colours.buttonBg
+  },
+  deleteBtn: {
+    backgroundColor: colours.buttonDanger
+  },
+  cancelBtn: {
+    backgroundColor: colours.buttonCancel
   },
   btnText: {
     fontSize: 20,
