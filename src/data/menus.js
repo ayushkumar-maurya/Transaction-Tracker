@@ -41,6 +41,13 @@ const menus = {
 
   bank: [
     {
+      title: 'Add Transaction',
+      icon: require(`${assetsPath}bank/add-transaction.png`),
+      navScreen: 'EditTransaction',
+      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'bank/transaction' },
+      newScreen: true 
+    },
+    {
       title: 'Banks',
       icon: require(`${assetsPath}bank/banks.png`),
       navScreen: 'Categories',
@@ -59,6 +66,13 @@ const menus = {
   ],
 
   creditCard: [
+    {
+      title: 'Add Transaction',
+      icon: require(`${assetsPath}credit-card/add-transaction.png`),
+      navScreen: 'EditTransaction',
+      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'creditcard/transaction' },
+      newScreen: true 
+    },
     {
       title: 'Credit Cards',
       icon: require(`${assetsPath}credit-card/credit-cards.png`),
@@ -79,6 +93,13 @@ const menus = {
 
   stock: [
     {
+      title: 'Add Transaction',
+      icon: require(`${assetsPath}stock/add-transaction.png`),
+      navScreen: 'EditTransaction',
+      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'stock/transaction' },
+      newScreen: true 
+    },
+    {
       title: 'Stocks',
       icon: require(`${assetsPath}stock/stocks.png`),
       navScreen: 'Categories',
@@ -98,6 +119,13 @@ const menus = {
 
   mutualFund: [
     {
+      title: 'Add Transaction',
+      icon: require(`${assetsPath}mutual-fund/add-transaction.png`),
+      navScreen: 'EditTransaction',
+      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'mutualfund/transaction' },
+      newScreen: true 
+    },
+    {
       title: 'Mutual Funds',
       icon: require(`${assetsPath}mutual-fund/mutual-funds.png`),
       navScreen: 'Categories',
@@ -116,6 +144,13 @@ const menus = {
   ],
 
   misc: [
+    {
+      title: 'Add Transaction',
+      icon: require(`${assetsPath}misc/add-transaction.png`),
+      navScreen: 'EditTransaction',
+      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'misc/transaction' },
+      newScreen: true 
+    },
     {
       title: 'Misc Categories',
       icon: require(`${assetsPath}misc/misc-categories.png`),

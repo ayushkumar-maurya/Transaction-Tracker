@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import styles from '../styles/components/routes'
 import MenuScreen from '../screens/MenuScreen'
+import EditTransactionScreen from '../screens/EditTransactionScreen'
 import CategoriesScreen from '../screens/CategoriesScreen'
 import EditCategoryScreen from '../screens/EditCategoryScreen'
 
@@ -17,6 +18,10 @@ const Routes = () => {
   <Stack.Navigator initialRouteName='Menu'>
 
     <Stack.Screen name='Menu' component={MenuScreen} initialParams={{ screenTitle: 'Home', menu: 'home' }}
+      options={{ ...headerStyles }}
+    />
+
+    <Stack.Screen name='EditTransaction' component={EditTransactionScreen}
       options={{ ...headerStyles }}
     />
 
