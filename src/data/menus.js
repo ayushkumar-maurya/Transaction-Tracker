@@ -44,7 +44,9 @@ const menus = {
       title: 'Add Transaction',
       icon: require(`${assetsPath}bank/add-transaction.png`),
       navScreen: 'EditTransaction',
-      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'bank/transaction', categoriesPath: 'bank/banks' },
+      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'bank/transaction',
+        categoriesInfo: { parent: 'Bank', path: 'bank/banks' }
+      },
       newScreen: true 
     },
     {
@@ -70,7 +72,9 @@ const menus = {
       title: 'Add Transaction',
       icon: require(`${assetsPath}credit-card/add-transaction.png`),
       navScreen: 'EditTransaction',
-      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'creditcard/transaction', categoriesPath: 'creditcard/creditcards' },
+      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'creditcard/transaction',
+        categoriesInfo: { parent: 'Credit Card', path: 'creditcard/creditcards' }
+      },
       newScreen: true 
     },
     {
@@ -96,7 +100,9 @@ const menus = {
       title: 'Add Transaction',
       icon: require(`${assetsPath}stock/add-transaction.png`),
       navScreen: 'EditTransaction',
-      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'stock/transaction', categoriesPath: 'stock/stocks' },
+      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'stock/transaction',
+        categoriesInfo: { parent: 'Stock', path: 'stock/stocks' }
+      },
       newScreen: true 
     },
     {
@@ -122,7 +128,9 @@ const menus = {
       title: 'Add Transaction',
       icon: require(`${assetsPath}mutual-fund/add-transaction.png`),
       navScreen: 'EditTransaction',
-      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'mutualfund/transaction', categoriesPath: 'mutualfund/mutualfunds' },
+      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'mutualfund/transaction',
+        categoriesInfo: { parent: 'Mutual Fund', path: 'mutualfund/mutualfunds' }
+      },
       newScreen: true 
     },
     {
@@ -148,7 +156,9 @@ const menus = {
       title: 'Add Transaction',
       icon: require(`${assetsPath}misc/add-transaction.png`),
       navScreen: 'EditTransaction',
-      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'misc/transaction', categoriesPath: 'misc/misccategories' },
+      navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'misc/transaction',
+        categoriesInfo: { parent: 'Misc Category', path: 'misc/misccategories' }
+      },
       newScreen: true 
     },
     {
