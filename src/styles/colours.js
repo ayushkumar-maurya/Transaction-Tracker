@@ -26,6 +26,10 @@ export default {
   textInputPlaceholder: '#AAA',
   textInputBorder: '#CCC',
 
+  dropdownBg: common.colour2,
+  dropdownFg: common.colour1,
+  dropdownBorder: '#CCC',
+
   buttonBg: common.colour1,
   buttonFg: common.colour2,
   buttonDanger: '#DC3546EF',
