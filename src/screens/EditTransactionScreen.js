@@ -18,12 +18,21 @@ import colours from '../styles/colours'
 const EditTransactionScreen = ({ route }) => {
   const navigation = useNavigation()
   const { screenTitle, categoriesInfo } = route.params
-  const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
 
   const [openCategory, setOpenCategory] = useState(false)
   const [categoryId, setCategoryId] = useState(null)
   const [categoryItems, setCategoryItems] = useState([{ label: 'No data found!', value: '0' }])
+
+  const updateCategoryItems = categories => {
+    if(categories.length > 0) {
+      setCategoryItems(categories.map(c => {
+        return { label: c.name.length > 20 ? `${c.name.substring(0, 20)}...` : c.name, value: `${c.id}` }
+      }))
+    }
+    else
+      setCategoryItems([{ label: 'No data found!', value: '0' }])
+  }
 
   const getCategories = async () => {
     try {
@@ -39,7 +48,7 @@ const EditTransactionScreen = ({ route }) => {
       let resData = await res.json()
       if(!(resData && Array.isArray(resData) && resData.length > 0))
         throw new Error('Unable to fetch required data!')
-      setCategories(resData)
+      updateCategoryItems(resData)
     }
     catch(err) {
       Alert.alert(screenTitle, err.message, [{ text: 'OK' }])
@@ -50,16 +59,6 @@ const EditTransactionScreen = ({ route }) => {
     navigation.setOptions({ title: screenTitle })
     getCategories()
   }, [])
-
-  useEffect(() => {
-    if(categories.length > 0) {
-      setCategoryItems(categories.map(c => {
-        return { label: c.name.length > 20 ? `${c.name.substring(0, 20)}...` : c.name, value: `${c.id}` }
-      }))
-    }
-    else
-      setCategoryItems([{ label: 'No data found!', value: '0' }])
-  }, [categories])
 
   return (
     <>
