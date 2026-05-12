@@ -1,19 +1,23 @@
-import { useState, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   View,
+  TextInput,
+  TouchableOpacity,
   Text,
   Alert,
   ActivityIndicator
 } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import DropDownPicker from 'react-native-dropdown-picker'
+import DateTimePicker from '@react-native-community/datetimepicker'
 
 import { API_URL } from '../config'
 import styles from '../styles/screens/editTransactionScreen'
 import colours from '../styles/colours'
+import formatDate from '../utils/date'
 
 const EditTransactionScreen = ({ route }) => {
   const navigation = useNavigation()
@@ -23,6 +27,10 @@ const EditTransactionScreen = ({ route }) => {
   const [openCategory, setOpenCategory] = useState(false)
   const [categoryId, setCategoryId] = useState(null)
   const [categoryItems, setCategoryItems] = useState([{ label: 'No data found!', value: '0' }])
+
+  const [showDatePicker, setShowDatePicker] = useState(false)
+  const dateRef = useRef(new Date())
+  const [date, setDate] = useState(formatDate(dateRef.current))
 
   const updateCategoryItems = categories => {
     if(categories.length > 0) {
@@ -60,6 +68,14 @@ const EditTransactionScreen = ({ route }) => {
     getCategories()
   }, [])
 
+  const onDateChange = (e, selectedDate) => {
+    setShowDatePicker(false)
+    if(selectedDate) {
+      dateRef.current = selectedDate
+      setDate(formatDate(dateRef.current))
+    }
+  }
+
   return (
     <>
       { loading && <ActivityIndicator size="large" color={colours.spinner} style={styles.spinner} /> }
@@ -89,6 +105,28 @@ const EditTransactionScreen = ({ route }) => {
               arrowIconStyle={styles.dropdown.arrowIconStyle}
               tickIconStyle={styles.dropdown.tickIconStyle}
             />
+
+            <Text style={styles.label}>Date</Text>
+
+            <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+              <TextInput
+                style={styles.textInput}
+                editable={false}
+                pointerEvents="none"
+                value={date}
+                placeholder="Date"
+                placeholderTextColor={colours.textInputPlaceholder}
+              />
+            </TouchableOpacity>
+
+            { showDatePicker && <View style={styles.datePicker}>
+              <DateTimePicker
+                value={dateRef.current}
+                mode="date"
+                display={Platform.OS === 'ios' ? 'inline' : 'calendar'}
+                onValueChange={onDateChange}
+              />
+            </View> }
 
           </View>
         </ScrollView>

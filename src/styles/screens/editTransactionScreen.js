@@ -47,6 +47,19 @@ const styles = StyleSheet.create({
     }
   },
 
+  datePicker: {
+    alignItems: 'center'
+  },
+
+  textInput: {
+    fontSize: 20,
+    color: colours.textInput,
+    padding: 10,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: colours.textInputBorder,
+    borderRadius: 10
+  },
   spinner: {
     position: 'absolute',
     zIndex: 999,
