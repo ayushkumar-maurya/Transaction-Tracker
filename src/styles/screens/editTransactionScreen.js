@@ -60,6 +60,10 @@ const styles = StyleSheet.create({
     borderColor: colours.textInputBorder,
     borderRadius: 10
   },
+  textInputMultiline: {
+    height: 100,
+    textAlignVertical: 'top'
+  },
   spinner: {
     position: 'absolute',
     zIndex: 999,

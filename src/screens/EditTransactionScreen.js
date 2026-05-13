@@ -32,6 +32,11 @@ const EditTransactionScreen = ({ route }) => {
   const dateRef = useRef(new Date())
   const [date, setDate] = useState(formatDate(dateRef.current))
 
+  const [description, setDescription] = useState(null)
+  const [deposit, setDeposit] = useState(null)
+  const [withdrawal, setWithdrawal] = useState(null)
+  const [remark, setRemark] = useState(null)
+
   const updateCategoryItems = categories => {
     if(categories.length > 0) {
       setCategoryItems(categories.map(c => {
@@ -127,6 +132,61 @@ const EditTransactionScreen = ({ route }) => {
                 onValueChange={onDateChange}
               />
             </View> }
+
+
+            <TextInput
+              multiline
+              style={[styles.textInput, styles.textInputMultiline]}
+              onChangeText={setDescription}
+              value={description}
+              placeholder="Description"
+              placeholderTextColor={colours.textInputPlaceholder}
+              { ...(Platform.OS === 'ios'
+                ? {selectionColor: colours.textInput}
+                : {cursorColor: colours.textInput}) }
+            />
+
+            <Text style={styles.label}>Deposit Amount</Text>
+
+            <TextInput
+              keyboardType="numeric"
+              style={styles.textInput}
+              onChangeText={setDeposit}
+              value={deposit}
+              placeholder="Deposit Amount"
+              placeholderTextColor={colours.textInputPlaceholder}
+              { ...(Platform.OS === 'ios'
+                ? {selectionColor: colours.textInput}
+                : {cursorColor: colours.textInput}) }
+            />
+
+            <Text style={styles.label}>Withdrawal Amount</Text>
+
+            <TextInput
+              keyboardType="numeric"
+              style={styles.textInput}
+              onChangeText={setWithdrawal}
+              value={withdrawal}
+              placeholder="Withdrawal Amount"
+              placeholderTextColor={colours.textInputPlaceholder}
+              { ...(Platform.OS === 'ios'
+                ? {selectionColor: colours.textInput}
+                : {cursorColor: colours.textInput}) }
+            />
+
+            <Text style={styles.label}>Remark</Text>
+
+            <TextInput
+              multiline
+              style={[styles.textInput, styles.textInputMultiline]}
+              onChangeText={setRemark}
+              value={remark}
+              placeholder="Remark"
+              placeholderTextColor={colours.textInputPlaceholder}
+              { ...(Platform.OS === 'ios'
+                ? {selectionColor: colours.textInput}
+                : {cursorColor: colours.textInput}) }
+            />
 
           </View>
         </ScrollView>
