@@ -133,6 +133,7 @@ const EditTransactionScreen = ({ route }) => {
               />
             </View> }
 
+            <Text style={styles.label}>Description</Text>
 
             <TextInput
               multiline
