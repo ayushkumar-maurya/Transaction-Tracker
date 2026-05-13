@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import {
-  KeyboardAvoidingView,
   Platform,
   ScrollView,
   View,
@@ -133,69 +132,64 @@ const EditCategoryScreen = ({ route }) => {
   }
 
   return (
-    <KeyboardAvoidingView
-      style={styles.keyboardAvoidingView}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
-      <ScrollView style={styles.container}>
-        <View style={styles.childContainer}>
+    <ScrollView style={styles.container}>
+      <View style={styles.childContainer}>
 
-          <Text style={styles.label}>Name</Text>
+        <Text style={styles.label}>Name</Text>
 
-          <TextInput
-            style={styles.textInput}
-            onChangeText={setName}
-            value={name}
-            placeholder="Name"
-            placeholderTextColor={colours.textInputPlaceholder}
-            { ...(Platform.OS === 'ios'
-              ? {selectionColor: colours.textInput}
-              : {cursorColor: colours.textInput}) }
-          />
+        <TextInput
+          style={styles.textInput}
+          onChangeText={setName}
+          value={name}
+          placeholder="Name"
+          placeholderTextColor={colours.textInputPlaceholder}
+          { ...(Platform.OS === 'ios'
+            ? {selectionColor: colours.textInput}
+            : {cursorColor: colours.textInput}) }
+        />
 
-          <Text style={styles.label}>Description</Text>
+        <Text style={styles.label}>Description</Text>
 
-          <TextInput
-            multiline
-            style={[styles.textInput, styles.textInputMultiline]}
-            onChangeText={setDescription}
-            value={description}
-            placeholder="Description"
-            placeholderTextColor={colours.textInputPlaceholder}
-            { ...(Platform.OS === 'ios'
-              ? {selectionColor: colours.textInput}
-              : {cursorColor: colours.textInput}) }
-          />
+        <TextInput
+          multiline
+          style={[styles.textInput, styles.textInputMultiline]}
+          onChangeText={setDescription}
+          value={description}
+          placeholder="Description"
+          placeholderTextColor={colours.textInputPlaceholder}
+          { ...(Platform.OS === 'ios'
+            ? {selectionColor: colours.textInput}
+            : {cursorColor: colours.textInput}) }
+        />
 
-          <View style={styles.btnContainer}>
-            <TouchableOpacity
-              onPress={sendEditRequest}
-              style={[styles.button, styles.editBtn]}
-              disabled={disableBtn}
-            >
-              <Text style={styles.btnText}>{ capActivity }</Text>
-            </TouchableOpacity>
+        <View style={styles.btnContainer}>
+          <TouchableOpacity
+            onPress={sendEditRequest}
+            style={[styles.button, styles.editBtn]}
+            disabled={disableBtn}
+          >
+            <Text style={styles.btnText}>{ capActivity }</Text>
+          </TouchableOpacity>
 
-            { activity === 'UPDATE' && <TouchableOpacity
-              onPress={sendDeleteRequest}
-              style={[styles.button, styles.deleteBtn]}
-              disabled={disableBtn}
-            >
-              <Text style={styles.btnText}>Delete</Text>
-            </TouchableOpacity> }
+          { activity === 'UPDATE' && <TouchableOpacity
+            onPress={sendDeleteRequest}
+            style={[styles.button, styles.deleteBtn]}
+            disabled={disableBtn}
+          >
+            <Text style={styles.btnText}>Delete</Text>
+          </TouchableOpacity> }
 
-            { activity === 'UPDATE' && <TouchableOpacity
-              onPress={navigation.goBack}
-              style={[styles.button, styles.cancelBtn]}
-              disabled={disableBtn}
-            >
-              <Text style={styles.btnText}>Cancel</Text>
-            </TouchableOpacity> }
-          </View>
-
+          { activity === 'UPDATE' && <TouchableOpacity
+            onPress={navigation.goBack}
+            style={[styles.button, styles.cancelBtn]}
+            disabled={disableBtn}
+          >
+            <Text style={styles.btnText}>Cancel</Text>
+          </TouchableOpacity> }
         </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+
+      </View>
+    </ScrollView>
   )
 }
 

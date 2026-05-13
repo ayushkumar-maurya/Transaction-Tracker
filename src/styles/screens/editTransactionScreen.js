@@ -2,9 +2,6 @@ import { StyleSheet } from "react-native"
 import colours from "../colours"
 
 const styles = StyleSheet.create({
-  keyboardAvoidingView: {
-    flex: 1
-  },
   container: {
     flex: 1,
     backgroundColor: colours.screenBg,

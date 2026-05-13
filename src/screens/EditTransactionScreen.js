@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
 import {
-  KeyboardAvoidingView,
   Platform,
   ScrollView,
   View,
@@ -85,113 +84,108 @@ const EditTransactionScreen = ({ route }) => {
     <>
       { loading && <ActivityIndicator size="large" color={colours.spinner} style={styles.spinner} /> }
       
-      <KeyboardAvoidingView
-        style={styles.keyboardAvoidingView}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
-        <ScrollView style={styles.container}>
-          <View style={styles.childContainer}>
+      <ScrollView style={styles.container}>
+        <View style={styles.childContainer}>
 
-            <Text style={styles.label}>{ categoriesInfo.parent }</Text>
+          <Text style={styles.label}>{ categoriesInfo.parent }</Text>
 
-            <DropDownPicker
-              listMode="SCROLLVIEW"
-              open={openCategory}
-              value={categoryId}
-              items={categoryItems}
-              setOpen={setOpenCategory}
-              setValue={setCategoryId}
-              setItems={setCategoryItems}
-              placeholder={`Select ${categoriesInfo.parent}`}
-              style={styles.dropdown.dropdown}
-              dropDownContainerStyle={styles.dropdown.dropdown}
-              listItemContainerStyle={styles.dropdown.listItemContainerStyle}
-              textStyle={styles.dropdown.text}
-              arrowIconStyle={styles.dropdown.arrowIconStyle}
-              tickIconStyle={styles.dropdown.tickIconStyle}
-            />
+          <DropDownPicker
+            listMode="SCROLLVIEW"
+            open={openCategory}
+            value={categoryId}
+            items={categoryItems}
+            setOpen={setOpenCategory}
+            setValue={setCategoryId}
+            setItems={setCategoryItems}
+            placeholder={`Select ${categoriesInfo.parent}`}
+            style={styles.dropdown.dropdown}
+            dropDownContainerStyle={styles.dropdown.dropdown}
+            listItemContainerStyle={styles.dropdown.listItemContainerStyle}
+            textStyle={styles.dropdown.text}
+            arrowIconStyle={styles.dropdown.arrowIconStyle}
+            tickIconStyle={styles.dropdown.tickIconStyle}
+          />
 
-            <Text style={styles.label}>Date</Text>
+          <Text style={styles.label}>Date</Text>
 
-            <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-              <TextInput
-                style={styles.textInput}
-                editable={false}
-                pointerEvents="none"
-                value={date}
-                placeholder="Date"
-                placeholderTextColor={colours.textInputPlaceholder}
-              />
-            </TouchableOpacity>
-
-            { showDatePicker && <View style={styles.datePicker}>
-              <DateTimePicker
-                value={dateRef.current}
-                mode="date"
-                display={Platform.OS === 'ios' ? 'inline' : 'calendar'}
-                onValueChange={onDateChange}
-              />
-            </View> }
-
-            <Text style={styles.label}>Description</Text>
-
+          <TouchableOpacity onPress={() => setShowDatePicker(true)}>
             <TextInput
-              multiline
-              style={[styles.textInput, styles.textInputMultiline]}
-              onChangeText={setDescription}
-              value={description}
-              placeholder="Description"
-              placeholderTextColor={colours.textInputPlaceholder}
-              { ...(Platform.OS === 'ios'
-                ? {selectionColor: colours.textInput}
-                : {cursorColor: colours.textInput}) }
-            />
-
-            <Text style={styles.label}>Deposit Amount</Text>
-
-            <TextInput
-              keyboardType="numeric"
               style={styles.textInput}
-              onChangeText={setDeposit}
-              value={deposit}
-              placeholder="Deposit Amount"
+              editable={false}
+              pointerEvents="none"
+              value={date}
+              placeholder="Date"
               placeholderTextColor={colours.textInputPlaceholder}
-              { ...(Platform.OS === 'ios'
-                ? {selectionColor: colours.textInput}
-                : {cursorColor: colours.textInput}) }
             />
+          </TouchableOpacity>
 
-            <Text style={styles.label}>Withdrawal Amount</Text>
-
-            <TextInput
-              keyboardType="numeric"
-              style={styles.textInput}
-              onChangeText={setWithdrawal}
-              value={withdrawal}
-              placeholder="Withdrawal Amount"
-              placeholderTextColor={colours.textInputPlaceholder}
-              { ...(Platform.OS === 'ios'
-                ? {selectionColor: colours.textInput}
-                : {cursorColor: colours.textInput}) }
+          { showDatePicker && <View style={styles.datePicker}>
+            <DateTimePicker
+              value={dateRef.current}
+              mode="date"
+              display={Platform.OS === 'ios' ? 'inline' : 'calendar'}
+              onValueChange={onDateChange}
             />
+          </View> }
 
-            <Text style={styles.label}>Remark</Text>
+          <Text style={styles.label}>Description</Text>
 
-            <TextInput
-              multiline
-              style={[styles.textInput, styles.textInputMultiline]}
-              onChangeText={setRemark}
-              value={remark}
-              placeholder="Remark"
-              placeholderTextColor={colours.textInputPlaceholder}
-              { ...(Platform.OS === 'ios'
-                ? {selectionColor: colours.textInput}
-                : {cursorColor: colours.textInput}) }
-            />
+          <TextInput
+            multiline
+            style={[styles.textInput, styles.textInputMultiline]}
+            onChangeText={setDescription}
+            value={description}
+            placeholder="Description"
+            placeholderTextColor={colours.textInputPlaceholder}
+            { ...(Platform.OS === 'ios'
+              ? {selectionColor: colours.textInput}
+              : {cursorColor: colours.textInput}) }
+          />
 
-          </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
+          <Text style={styles.label}>Deposit Amount</Text>
+
+          <TextInput
+            keyboardType="numeric"
+            style={styles.textInput}
+            onChangeText={setDeposit}
+            value={deposit}
+            placeholder="Deposit Amount"
+            placeholderTextColor={colours.textInputPlaceholder}
+            { ...(Platform.OS === 'ios'
+              ? {selectionColor: colours.textInput}
+              : {cursorColor: colours.textInput}) }
+          />
+
+          <Text style={styles.label}>Withdrawal Amount</Text>
+
+          <TextInput
+            keyboardType="numeric"
+            style={styles.textInput}
+            onChangeText={setWithdrawal}
+            value={withdrawal}
+            placeholder="Withdrawal Amount"
+            placeholderTextColor={colours.textInputPlaceholder}
+            { ...(Platform.OS === 'ios'
+              ? {selectionColor: colours.textInput}
+              : {cursorColor: colours.textInput}) }
+          />
+
+          <Text style={styles.label}>Remark</Text>
+
+          <TextInput
+            multiline
+            style={[styles.textInput, styles.textInputMultiline]}
+            onChangeText={setRemark}
+            value={remark}
+            placeholder="Remark"
+            placeholderTextColor={colours.textInputPlaceholder}
+            { ...(Platform.OS === 'ios'
+              ? {selectionColor: colours.textInput}
+              : {cursorColor: colours.textInput}) }
+          />
+
+        </View>
+      </ScrollView>
     </>
   )
 }
