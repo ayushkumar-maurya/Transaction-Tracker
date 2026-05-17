@@ -4,6 +4,7 @@ import {
   ScrollView,
   View,
   TextInput,
+  Keyboard,
   TouchableOpacity,
   Text,
   Alert,
@@ -22,6 +23,7 @@ const EditTransactionScreen = ({ route }) => {
   const navigation = useNavigation()
   const { screenTitle, categoriesInfo } = route.params
   const [loading, setLoading] = useState(true)
+  const [childContainerMarginBottom, setChildContainerMarginBottom] = useState(styles.childContainerMarginBottom)
 
   const [openCategory, setOpenCategory] = useState(false)
   const [categoryId, setCategoryId] = useState(null)
@@ -70,6 +72,18 @@ const EditTransactionScreen = ({ route }) => {
   useEffect(() => {
     navigation.setOptions({ title: screenTitle })
     getCategories()
+
+    const showSubscription = Keyboard.addListener('keyboardDidShow', e => {
+      setChildContainerMarginBottom(styles.childContainerMarginBottom + e.endCoordinates.height)
+    })
+    const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
+      setChildContainerMarginBottom(styles.childContainerMarginBottom)
+    })
+
+    return () => {
+      showSubscription.remove()
+      hideSubscription.remove()
+    }
   }, [])
 
   const onDateChange = (e, selectedDate) => {
@@ -85,7 +99,7 @@ const EditTransactionScreen = ({ route }) => {
       { loading && <ActivityIndicator size="large" color={colours.spinner} style={styles.spinner} /> }
       
       <ScrollView style={styles.container}>
-        <View style={styles.childContainer}>
+        <View style={[styles.childContainer, { marginBottom: childContainerMarginBottom }]}>
 
           <Text style={styles.label}>{ categoriesInfo.parent }</Text>
 

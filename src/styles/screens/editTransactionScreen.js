@@ -7,9 +7,10 @@ const styles = StyleSheet.create({
     backgroundColor: colours.screenBg,
   },
   childContainer: {
-    padding: 15,
-    marginBottom: 40
+    paddingHorizontal: 15,
+    paddingTop: 15
   },
+  childContainerMarginBottom: 60,
   label: {
     color: colours.inputLabel,
     fontSize: 15

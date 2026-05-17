@@ -4,6 +4,7 @@ import {
   ScrollView,
   View,
   TextInput,
+  Keyboard,
   TouchableOpacity,
   Text,
   Alert
@@ -19,6 +20,7 @@ const EditCategoryScreen = ({ route }) => {
   const { screenTitle, method, path, deletePath, category } = route.params
   const activity = category ? 'UPDATE' : 'ADD'
   const capActivity = activity.charAt(0).toUpperCase() + activity.slice(1).toLowerCase()
+  const [childContainerMarginBottom, setChildContainerMarginBottom] = useState(styles.childContainerMarginBottom)
 
   const [name, setName] = useState(null)
   const [description, setDescription] = useState(null)
@@ -30,6 +32,18 @@ const EditCategoryScreen = ({ route }) => {
     if(activity === 'UPDATE') {
       setName(category.name)
       setDescription(category.description)
+    }
+
+    const showSubscription = Keyboard.addListener('keyboardDidShow', e => {
+      setChildContainerMarginBottom(styles.childContainerMarginBottom + e.endCoordinates.height)
+    })
+    const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
+      setChildContainerMarginBottom(styles.childContainerMarginBottom)
+    })
+
+    return () => {
+      showSubscription.remove()
+      hideSubscription.remove()
     }
   }, [])
 
@@ -133,7 +147,7 @@ const EditCategoryScreen = ({ route }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.childContainer}>
+      <View style={[styles.childContainer, { marginBottom: childContainerMarginBottom }]}>
 
         <Text style={styles.label}>Name</Text>
 
