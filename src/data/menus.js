@@ -50,6 +50,15 @@ const menus = {
       newScreen: true 
     },
     {
+      title: 'Transactions',
+      icon: require(`${assetsPath}bank/transactions.png`),
+      navScreen: 'Transactions',
+      navParams: { screenTitle: 'Transactions', path: 'bank/transactions',
+        updateInfo: { screenTitle: 'Update Transaction', method: 'PUT', path: 'bank/transaction', deletePath: 'bank/transaction' }
+      },
+      newScreen: true 
+    },
+    {
       title: 'Banks',
       icon: require(`${assetsPath}bank/banks.png`),
       navScreen: 'Categories',
@@ -74,6 +83,15 @@ const menus = {
       navScreen: 'EditTransaction',
       navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'creditcard/transaction',
         categoriesInfo: { parent: 'Credit Card', path: 'creditcard/creditcards' }
+      },
+      newScreen: true 
+    },
+    {
+      title: 'Transactions',
+      icon: require(`${assetsPath}credit-card/transactions.png`),
+      navScreen: 'Transactions',
+      navParams: { screenTitle: 'Transactions', path: 'creditcard/transactions',
+        updateInfo: { screenTitle: 'Update Transaction', method: 'PUT', path: 'creditcard/transaction', deletePath: 'creditcard/transaction' }
       },
       newScreen: true 
     },
@@ -106,6 +124,15 @@ const menus = {
       newScreen: true 
     },
     {
+      title: 'Transactions',
+      icon: require(`${assetsPath}stock/transactions.png`),
+      navScreen: 'Transactions',
+      navParams: { screenTitle: 'Transactions', path: 'stock/transactions',
+        updateInfo: { screenTitle: 'Update Transaction', method: 'PUT', path: 'stock/transaction', deletePath: 'stock/transaction' }
+      },
+      newScreen: true 
+    },
+    {
       title: 'Stocks',
       icon: require(`${assetsPath}stock/stocks.png`),
       navScreen: 'Categories',
@@ -134,6 +161,15 @@ const menus = {
       newScreen: true 
     },
     {
+      title: 'Transactions',
+      icon: require(`${assetsPath}mutual-fund/transactions.png`),
+      navScreen: 'Transactions',
+      navParams: { screenTitle: 'Transactions', path: 'mutualfund/transactions',
+        updateInfo: { screenTitle: 'Update Transaction', method: 'PUT', path: 'mutualfund/transaction', deletePath: 'mutualfund/transaction' }
+      },
+      newScreen: true 
+    },
+    {
       title: 'Mutual Funds',
       icon: require(`${assetsPath}mutual-fund/mutual-funds.png`),
       navScreen: 'Categories',
@@ -158,6 +194,15 @@ const menus = {
       navScreen: 'EditTransaction',
       navParams: { screenTitle: 'Add Transaction', method: 'POST', path: 'misc/transaction',
         categoriesInfo: { parent: 'Misc Category', path: 'misc/misccategories' }
+      },
+      newScreen: true 
+    },
+    {
+      title: 'Transactions',
+      icon: require(`${assetsPath}misc/transactions.png`),
+      navScreen: 'Transactions',
+      navParams: { screenTitle: 'Transactions', path: 'misc/transactions',
+        updateInfo: { screenTitle: 'Update Transaction', method: 'PUT', path: 'misc/transaction', deletePath: 'misc/transaction' }
       },
       newScreen: true 
     },
