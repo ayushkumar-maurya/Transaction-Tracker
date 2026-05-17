@@ -18,13 +18,15 @@ import colours from '../styles/colours'
 const EditCategoryScreen = ({ route }) => {
   const navigation = useNavigation()
   const { screenTitle, method, path, deletePath, category } = route.params
+
   const activity = category ? 'UPDATE' : 'ADD'
   const capActivity = activity.charAt(0).toUpperCase() + activity.slice(1).toLowerCase()
+
   const [childContainerMarginBottom, setChildContainerMarginBottom] = useState(styles.childContainerMarginBottom)
+  const [disableBtn, setDisableBtn] = useState(false)
 
   const [name, setName] = useState(null)
   const [description, setDescription] = useState(null)
-  const [disableBtn, setDisableBtn] = useState(false)
 
   useEffect(() => {
     navigation.setOptions({ title: screenTitle })

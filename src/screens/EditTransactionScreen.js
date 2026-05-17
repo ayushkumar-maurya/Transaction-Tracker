@@ -21,18 +21,23 @@ import formatDate from '../utils/date'
 
 const EditTransactionScreen = ({ route }) => {
   const navigation = useNavigation()
-  const { screenTitle, categoriesInfo } = route.params
+  const { screenTitle, method, path, categoriesInfo } = route.params
+
+  const activity = 'ADD'
+  const capActivity = activity.charAt(0).toUpperCase() + activity.slice(1).toLowerCase()
+
   const [loading, setLoading] = useState(true)
   const [childContainerMarginBottom, setChildContainerMarginBottom] = useState(styles.childContainerMarginBottom)
+  const [disableBtn, setDisableBtn] = useState(false)
 
   const [openCategory, setOpenCategory] = useState(false)
-  const [categoryId, setCategoryId] = useState(null)
   const [categoryItems, setCategoryItems] = useState([{ label: 'No data found!', value: '0' }])
 
   const [showDatePicker, setShowDatePicker] = useState(false)
   const dateRef = useRef(new Date())
+  
+  const [categoryId, setCategoryId] = useState(null)
   const [date, setDate] = useState(formatDate(dateRef.current))
-
   const [description, setDescription] = useState(null)
   const [deposit, setDeposit] = useState(null)
   const [withdrawal, setWithdrawal] = useState(null)
@@ -91,6 +96,78 @@ const EditTransactionScreen = ({ route }) => {
     if(selectedDate) {
       dateRef.current = selectedDate
       setDate(formatDate(dateRef.current))
+    }
+  }
+
+  const sendEditRequest = async () => {
+    setDisableBtn(true)
+
+    const postData = {
+      categoryId,
+      date,
+      description,
+      deposit: Number(deposit),
+      withdrawal: Number(withdrawal),
+      remark
+    }
+  
+    try {
+      if(!postData.categoryId || postData.categoryId === '0')
+        throw new Error('Please select the Category ID!')
+
+      if(postData.date != null && !(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(postData.date)))
+        throw new Error('Please enter the date in correct format i.e., YYYY-MM-DD!')
+
+      if(postData.description)
+        postData.description = postData.description.trim()
+
+      if(!postData.deposit && !postData.withdrawal)
+        throw new Error('Please enter either deposit or withdrawal amount!')
+
+      if(postData.remark)
+        postData.remark = postData.remark.trim()
+
+      let transactionEdited = false
+
+      const url = `${API_URL}${path}`;
+      let params = {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(postData)
+      }
+
+      const res = await fetch(url, params)
+      if(res) {
+        let resData = await res.json()
+        if(resData) {
+          if((activity === 'ADD' && resData.insertedId) || (activity === 'UPDATE' && resData.affectedRows))
+            transactionEdited = true
+          else if(resData.error)
+            throw new Error(resData.error)
+        }
+      }
+
+      if(transactionEdited) {
+        if(activity === 'ADD') {
+          dateRef.current = new Date()
+
+          setCategoryId(null)
+          setDate(formatDate(dateRef.current))
+          setDescription(null)
+          setDeposit(null)
+          setWithdrawal(null)
+          setRemark(null)
+        }
+        Alert.alert(capActivity, `Transaction ${activity === 'ADD' ? 'added' : 'updated'} successfully!`, [{ text: 'OK' }])
+      }
+      else
+        throw new Error('Some error occurred. Please try again!')
+    }
+    catch(err) {
+      Alert.alert(capActivity, err.message, [{ text: 'OK' }])
+    }
+    finally {
+      setDisableBtn(false)
     }
   }
 
@@ -197,6 +274,16 @@ const EditTransactionScreen = ({ route }) => {
               ? {selectionColor: colours.textInput}
               : {cursorColor: colours.textInput}) }
           />
+
+        <View style={styles.btnContainer}>
+          <TouchableOpacity
+            onPress={sendEditRequest}
+            style={[styles.button, styles.editBtn]}
+            disabled={disableBtn}
+          >
+            <Text style={styles.btnText}>{ capActivity }</Text>
+          </TouchableOpacity>
+        </View>
 
         </View>
       </ScrollView>
