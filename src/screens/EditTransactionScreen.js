@@ -17,7 +17,7 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 import { API_URL } from '../config'
 import styles from '../styles/screens/editTransactionScreen'
 import colours from '../styles/colours'
-import formatDate from '../utils/date'
+import { formatDate } from '../utils/date'
 
 const EditTransactionScreen = ({ route }) => {
   const navigation = useNavigation()

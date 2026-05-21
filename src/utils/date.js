@@ -5,4 +5,4 @@ const formatDate = date => {
   return `${year}-${month}-${day}`
 }
 
-export default formatDate
+export { formatDate }
