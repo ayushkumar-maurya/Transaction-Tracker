@@ -344,6 +344,14 @@ const EditTransactionScreen = ({ route }) => {
           >
             <Text style={styles.btnText}>Delete</Text>
           </TouchableOpacity> }
+
+          { activity === 'UPDATE' && <TouchableOpacity
+            onPress={navigation.goBack}
+            style={[styles.button, styles.cancelBtn]}
+            disabled={disableBtn}
+          >
+            <Text style={styles.btnText}>Cancel</Text>
+          </TouchableOpacity> }
         </View>
 
         </View>
