@@ -184,6 +184,46 @@ const EditTransactionScreen = ({ route }) => {
     }
   }
 
+  const sendDeleteRequest = async () => {
+    setDisableBtn(true)
+    const postData = { id: transaction.id }
+
+    try {
+      let transactionDeleted = false
+
+      const url = `${API_URL}${deletePath}`;
+      let params = {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(postData)
+      }
+
+      const res = await fetch(url, params)
+      if(res) {
+        let resData = await res.json()
+        if(resData) {
+          if(resData.affectedRows)
+            transactionDeleted = true
+          else if(resData.error)
+            throw new Error(resData.error)
+        }
+      }
+
+      if(transactionDeleted) {
+        navigation.goBack()
+        Alert.alert('Delete', 'Transaction deleted successfully!', [{ text: 'OK' }])
+      }
+      else
+        throw new Error('Some error occurred. Please try again!')
+    }
+    catch(err) {
+      Alert.alert('Delete', err.message, [{ text: 'OK' }])
+    }
+    finally {
+      setDisableBtn(false)
+    }
+  }
+
   return (
     <>
       { loading && <ActivityIndicator size="large" color={colours.spinner} style={styles.spinner} /> }
@@ -296,6 +336,14 @@ const EditTransactionScreen = ({ route }) => {
           >
             <Text style={styles.btnText}>{ capActivity }</Text>
           </TouchableOpacity>
+
+          { activity === 'UPDATE' && <TouchableOpacity
+            onPress={sendDeleteRequest}
+            style={[styles.button, styles.deleteBtn]}
+            disabled={disableBtn}
+          >
+            <Text style={styles.btnText}>Delete</Text>
+          </TouchableOpacity> }
         </View>
 
         </View>
