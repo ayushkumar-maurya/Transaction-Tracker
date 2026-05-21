@@ -4,7 +4,10 @@ import colours from "../colours"
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colours.screenBg,
+    backgroundColor: colours.screenBg
+  },
+  contentContainer: {
+    paddingBottom: 60
   },
   spinner: {
     position: 'absolute',

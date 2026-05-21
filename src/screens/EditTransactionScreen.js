@@ -22,6 +22,7 @@ import { formatDate } from '../utils/date'
 const EditTransactionScreen = ({ route }) => {
   const navigation = useNavigation()
   const { screenTitle, method, path, deletePath, categoriesInfo, transaction } = route.params
+
   const activity = transaction ? 'UPDATE' : 'ADD'
   const capActivity = activity.charAt(0).toUpperCase() + activity.slice(1).toLowerCase()
 

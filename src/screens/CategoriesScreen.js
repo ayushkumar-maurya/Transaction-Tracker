@@ -45,7 +45,7 @@ const CategoriesScreen = ({ route, navigation }) => {
   return (
     <>
       { loading && <ActivityIndicator size="large" color={colours.spinner} style={styles.spinner} /> }
-      <ScrollView style={styles.container}>
+      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         {categories.map((item, index) =>
           <CategoryRowItem category={item} index={index} updateInfo={updateInfo} key={index} />
         )}
