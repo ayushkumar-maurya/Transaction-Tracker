@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
 
   textInput: {
     fontSize: 20,
+    color: colours.textInput,
     padding: 10,
     marginBottom: 15,
     borderWidth: 1,
