@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
-import { Text } from 'react-native'
+import { ScrollView, Alert, ActivityIndicator } from 'react-native'
 import { useIsFocused } from '@react-navigation/native'
 import { API_URL } from '../config'
+import styles from '../styles/screens/transactionsScreen'
+import TransactionRowItem from '../components/items/TransactionRowItem'
+import colours from '../styles/colours'
 
 const TransactionsScreen = ({ route, navigation }) => {
   const { screenTitle, path, updateInfo } = route.params
@@ -40,7 +43,14 @@ const TransactionsScreen = ({ route, navigation }) => {
   }, [isFocused])
 
   return (
-    <Text>Transactions Screen!</Text>
+    <>
+      { loading && <ActivityIndicator size="large" color={colours.spinner} style={styles.spinner} /> }
+      <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        {transactions.map((item, index) =>
+          <TransactionRowItem transaction={item} index={index} updateInfo={updateInfo} key={index} />
+        )}
+      </ScrollView>
+    </>
   )
 }
 

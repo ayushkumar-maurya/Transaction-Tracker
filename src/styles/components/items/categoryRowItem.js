@@ -7,12 +7,12 @@ const styles = StyleSheet.create({
     padding: 15
   },
   name: {
-    color: colours.listItemTitle,
+    color: colours.listItemContent1,
     fontSize: 20,
     fontWeight: 'bold'
   },
   desc: {
-    color: colours.listItemDesc,
+    color: colours.listItemContent2,
     fontSize: 15
   },
   line: {
