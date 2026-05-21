@@ -21,9 +21,8 @@ import { formatDate } from '../utils/date'
 
 const EditTransactionScreen = ({ route }) => {
   const navigation = useNavigation()
-  const { screenTitle, method, path, categoriesInfo } = route.params
-
-  const activity = 'ADD'
+  const { screenTitle, method, path, deletePath, categoriesInfo, transaction } = route.params
+  const activity = transaction ? 'UPDATE' : 'ADD'
   const capActivity = activity.charAt(0).toUpperCase() + activity.slice(1).toLowerCase()
 
   const [loading, setLoading] = useState(true)
@@ -78,6 +77,15 @@ const EditTransactionScreen = ({ route }) => {
     navigation.setOptions({ title: screenTitle })
     getCategories()
 
+    if(activity === 'UPDATE') {
+      setCategoryId(String(transaction.category_id))
+      setDate(transaction.date)
+      setDescription(transaction.description)
+      setDeposit(transaction.deposit)
+      setWithdrawal(transaction.withdrawal)
+      setRemark(transaction.remark)
+    }
+  
     const showSubscription = Keyboard.addListener('keyboardDidShow', e => {
       setChildContainerMarginBottom(styles.childContainerMarginBottom + e.endCoordinates.height)
     })
@@ -110,7 +118,10 @@ const EditTransactionScreen = ({ route }) => {
       withdrawal: Number(withdrawal),
       remark
     }
-  
+
+    if(activity === 'UPDATE')
+      postData.id = transaction.id
+
     try {
       if(!postData.categoryId || postData.categoryId === '0')
         throw new Error('Please select the Category ID!')
@@ -158,6 +169,8 @@ const EditTransactionScreen = ({ route }) => {
           setWithdrawal(null)
           setRemark(null)
         }
+        else if(activity === 'UPDATE')
+          navigation.goBack()
         Alert.alert(capActivity, `Transaction ${activity === 'ADD' ? 'added' : 'updated'} successfully!`, [{ text: 'OK' }])
       }
       else
