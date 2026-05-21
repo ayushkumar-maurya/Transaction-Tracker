@@ -30,6 +30,9 @@ export default {
   dropdownFg: common.colour1,
   dropdownBorder: '#CCC',
 
+  depositFg: common.colour1,
+  withdrawalFg: 'yellow',
+
   buttonBg: common.colour1,
   buttonFg: common.colour2,
   buttonDanger: '#DC3546EF',

@@ -291,7 +291,7 @@ const EditTransactionScreen = ({ route }) => {
 
           <TextInput
             keyboardType="numeric"
-            style={styles.textInput}
+            style={[styles.textInput, styles.deposit]}
             onChangeText={setDeposit}
             value={deposit}
             placeholder="Deposit Amount"
@@ -305,7 +305,7 @@ const EditTransactionScreen = ({ route }) => {
 
           <TextInput
             keyboardType="numeric"
-            style={styles.textInput}
+            style={[styles.textInput, styles.withdrawal]}
             onChangeText={setWithdrawal}
             value={withdrawal}
             placeholder="Withdrawal Amount"

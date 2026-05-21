@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
 
   textInput: {
     fontSize: 20,
-    color: colours.textInput,
     padding: 10,
     marginBottom: 15,
     borderWidth: 1,
@@ -61,6 +60,12 @@ const styles = StyleSheet.create({
   textInputMultiline: {
     height: 100,
     textAlignVertical: 'top'
+  },
+  deposit: {
+    color: colours.depositFg
+  },
+  withdrawal: {
+    color: colours.withdrawalFg
   },
   btnContainer: {
     flex: 1,

@@ -51,6 +51,12 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: 'bold'
   },
+  deposit: {
+    color: colours.depositFg
+  },
+  withdrawal: {
+    color: colours.withdrawalFg
+  },
 
   line: {
     borderTopWidth: 1,

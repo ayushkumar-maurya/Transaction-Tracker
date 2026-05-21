@@ -22,7 +22,12 @@ const TransactionRowItem = ({ transaction, index, updateInfo }) => {
         </View>
 
         <View style={styles.amtContainer}>
-          <Text numberOfLines={1} style={styles.amt}>{ currencyFormatter.format(transaction.deposit > 0 ? transaction.deposit : transaction.withdrawal) }</Text>
+          <Text
+            numberOfLines={1}
+            style={[styles.amt, transaction.deposit > 0 ? styles.deposit : styles.withdrawal]}
+          >
+            { `${transaction.deposit > 0 ? '+ ' : ''}${currencyFormatter.format(transaction.deposit > 0 ? transaction.deposit : transaction.withdrawal)}` }
+          </Text>
         </View>
 
       </TouchableOpacity>
