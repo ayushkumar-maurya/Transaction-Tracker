@@ -259,7 +259,7 @@ const EditTransactionScreen = ({ route }) => {
               editable={false}
               pointerEvents="none"
               value={date}
-              placeholder="Date"
+              placeholder="YYYY-MM-DD"
               placeholderTextColor={colours.textInputPlaceholder}
             />
           </TouchableOpacity>
