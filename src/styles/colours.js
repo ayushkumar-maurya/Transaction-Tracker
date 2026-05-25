@@ -32,6 +32,8 @@ export default {
 
   depositFg: '#00B050',
   withdrawalFg: common.colour1,
+  positiveAmtFg: common.colour1,
+  negativeAmtFg: '#DC3546EF',
 
   buttonBg: common.colour1,
   buttonFg: common.colour2,
