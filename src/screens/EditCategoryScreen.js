@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import {
-  KeyboardAvoidingView,
   Platform,
   ScrollView,
   View,
   TextInput,
+  Keyboard,
   TouchableOpacity,
   Text,
   Alert
@@ -18,12 +18,15 @@ import colours from '../styles/colours'
 const EditCategoryScreen = ({ route }) => {
   const navigation = useNavigation()
   const { screenTitle, method, path, deletePath, category } = route.params
+
   const activity = category ? 'UPDATE' : 'ADD'
   const capActivity = activity.charAt(0).toUpperCase() + activity.slice(1).toLowerCase()
 
+  const [childContainerMarginBottom, setChildContainerMarginBottom] = useState(styles.childContainerMarginBottom)
+  const [disableBtn, setDisableBtn] = useState(false)
+
   const [name, setName] = useState(null)
   const [description, setDescription] = useState(null)
-  const [disableBtn, setDisableBtn] = useState(false)
 
   useEffect(() => {
     navigation.setOptions({ title: screenTitle })
@@ -31,6 +34,18 @@ const EditCategoryScreen = ({ route }) => {
     if(activity === 'UPDATE') {
       setName(category.name)
       setDescription(category.description)
+    }
+
+    const showSubscription = Keyboard.addListener('keyboardDidShow', e => {
+      setChildContainerMarginBottom(styles.childContainerMarginBottom + e.endCoordinates.height)
+    })
+    const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
+      setChildContainerMarginBottom(styles.childContainerMarginBottom)
+    })
+
+    return () => {
+      showSubscription.remove()
+      hideSubscription.remove()
     }
   }, [])
 
@@ -133,69 +148,64 @@ const EditCategoryScreen = ({ route }) => {
   }
 
   return (
-    <KeyboardAvoidingView
-      style={styles.keyboardAvoidingView}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
-      <ScrollView style={styles.container}>
-        <View style={styles.childContainer}>
+    <ScrollView style={styles.container}>
+      <View style={[styles.childContainer, { marginBottom: childContainerMarginBottom }]}>
 
-          <Text style={styles.label}>Name</Text>
+        <Text style={styles.label}>Name</Text>
 
-          <TextInput
-            style={styles.textInput}
-            onChangeText={setName}
-            value={name}
-            placeholder="Name"
-            placeholderTextColor={colours.textInputPlaceholder}
-            { ...(Platform.OS === 'ios'
-              ? {selectionColor: colours.textInput}
-              : {cursorColor: colours.textInput}) }
-          />
+        <TextInput
+          style={styles.textInput}
+          onChangeText={setName}
+          value={name}
+          placeholder="Name"
+          placeholderTextColor={colours.textInputPlaceholder}
+          { ...(Platform.OS === 'ios'
+            ? {selectionColor: colours.textInput}
+            : {cursorColor: colours.textInput}) }
+        />
 
-          <Text style={styles.label}>Description</Text>
+        <Text style={styles.label}>Description</Text>
 
-          <TextInput
-            multiline
-            style={[styles.textInput, styles.textInputMultiline]}
-            onChangeText={setDescription}
-            value={description}
-            placeholder="Description"
-            placeholderTextColor={colours.textInputPlaceholder}
-            { ...(Platform.OS === 'ios'
-              ? {selectionColor: colours.textInput}
-              : {cursorColor: colours.textInput}) }
-          />
+        <TextInput
+          multiline
+          style={[styles.textInput, styles.textInputMultiline]}
+          onChangeText={setDescription}
+          value={description}
+          placeholder="Description"
+          placeholderTextColor={colours.textInputPlaceholder}
+          { ...(Platform.OS === 'ios'
+            ? {selectionColor: colours.textInput}
+            : {cursorColor: colours.textInput}) }
+        />
 
-          <View style={styles.btnContainer}>
-            <TouchableOpacity
-              onPress={sendEditRequest}
-              style={[styles.button, styles.editBtn]}
-              disabled={disableBtn}
-            >
-              <Text style={styles.btnText}>{ capActivity }</Text>
-            </TouchableOpacity>
+        <View style={styles.btnContainer}>
+          <TouchableOpacity
+            onPress={sendEditRequest}
+            style={[styles.button, styles.editBtn]}
+            disabled={disableBtn}
+          >
+            <Text style={styles.btnText}>{ capActivity }</Text>
+          </TouchableOpacity>
 
-            { activity === 'UPDATE' && <TouchableOpacity
-              onPress={sendDeleteRequest}
-              style={[styles.button, styles.deleteBtn]}
-              disabled={disableBtn}
-            >
-              <Text style={styles.btnText}>Delete</Text>
-            </TouchableOpacity> }
+          { activity === 'UPDATE' && <TouchableOpacity
+            onPress={sendDeleteRequest}
+            style={[styles.button, styles.deleteBtn]}
+            disabled={disableBtn}
+          >
+            <Text style={styles.btnText}>Delete</Text>
+          </TouchableOpacity> }
 
-            { activity === 'UPDATE' && <TouchableOpacity
-              onPress={navigation.goBack}
-              style={[styles.button, styles.cancelBtn]}
-              disabled={disableBtn}
-            >
-              <Text style={styles.btnText}>Cancel</Text>
-            </TouchableOpacity> }
-          </View>
-
+          { activity === 'UPDATE' && <TouchableOpacity
+            onPress={navigation.goBack}
+            style={[styles.button, styles.cancelBtn]}
+            disabled={disableBtn}
+          >
+            <Text style={styles.btnText}>Cancel</Text>
+          </TouchableOpacity> }
         </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+
+      </View>
+    </ScrollView>
   )
 }
 

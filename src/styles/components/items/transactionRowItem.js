@@ -12,14 +12,32 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     flexShrink: 1
   },
-  name: {
+  infoSecionContainer: {
+    flexDirection: 'row'
+  },
+  date: {
+    flexGrow: 0,
+    flexShrink: 0,
+    paddingRight: 10,
     color: colours.listItemContent1,
-    fontSize: 20,
+    fontSize: 15,
+    fontWeight: 'bold'
+  },
+  category: {
+    flexGrow: 1,
+    flexShrink: 1,
+    color: colours.listItemContent1,
+    fontSize: 15,
     fontWeight: 'bold'
   },
   desc: {
     color: colours.listItemContent2,
-    fontSize: 15
+    fontSize: 15,
+    fontWeight: 'bold'
+  },
+  remark: {
+    color: colours.listItemContent2,
+    fontSize: 12
   },
 
   amtContainer: {
@@ -29,14 +47,15 @@ const styles = StyleSheet.create({
     flexShrink: 0
   },
   amt: {
+    color: colours.listItemContent1,
     fontSize: 17,
     fontWeight: 'bold'
   },
-  positiveAmt: {
-    color: colours.positiveAmtFg
+  deposit: {
+    color: colours.depositFg
   },
-  negativeAmt: {
-    color: colours.negativeAmtFg
+  withdrawal: {
+    color: colours.withdrawalFg
   },
 
   line: {

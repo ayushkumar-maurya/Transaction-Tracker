@@ -2,17 +2,17 @@ import { useState, useEffect } from 'react'
 import { ScrollView, Alert, ActivityIndicator } from 'react-native'
 import { useIsFocused } from '@react-navigation/native'
 import { API_URL } from '../config'
-import styles from '../styles/screens/categoriesScreen'
-import CategoryRowItem from '../components/items/CategoryRowItem'
+import styles from '../styles/screens/transactionsScreen'
+import TransactionRowItem from '../components/items/TransactionRowItem'
 import colours from '../styles/colours'
 
-const CategoriesScreen = ({ route, navigation }) => {
+const TransactionsScreen = ({ route, navigation }) => {
   const { screenTitle, path, updateInfo } = route.params
-  const [categories, setCategories] = useState([])
+  const [transactions, setTransactions] = useState([])
   const [loading, setLoading] = useState(true)
   const isFocused = useIsFocused()
 
-  const getCategories = async () => {
+  const getTransactions = async () => {
     try {
       const url = `${API_URL}${path}`
       let params = {
@@ -22,11 +22,11 @@ const CategoriesScreen = ({ route, navigation }) => {
       const res = await fetch(url, params)
       setLoading(false)
       if(!res)
-        throw new Error('Unable to fetch records!')
+        throw new Error('Unable to fetch transactions!')
       let resData = await res.json()
       if(!(resData && Array.isArray(resData)))
-        throw new Error('Unable to fetch records!')
-      setCategories(resData)
+        throw new Error('Unable to fetch transactions!')
+      setTransactions(resData)
     }
     catch(err) {
       Alert.alert(screenTitle, err.message, [{ text: 'OK' }])
@@ -39,19 +39,19 @@ const CategoriesScreen = ({ route, navigation }) => {
   
   useEffect(() => {
     if(isFocused)
-      getCategories()
+      getTransactions()
   }, [isFocused])
 
   return (
     <>
       { loading && <ActivityIndicator size="large" color={colours.spinner} style={styles.spinner} /> }
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-        {categories.map((item, index) =>
-          <CategoryRowItem category={item} index={index} updateInfo={updateInfo} key={index} />
+        {transactions.map((item, index) =>
+          <TransactionRowItem transaction={item} index={index} updateInfo={updateInfo} key={index} />
         )}
       </ScrollView>
     </>
   )
 }
 
-export default CategoriesScreen
+export default TransactionsScreen

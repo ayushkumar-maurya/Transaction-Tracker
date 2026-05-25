@@ -15,6 +15,40 @@ const styles = StyleSheet.create({
     color: colours.inputLabel,
     fontSize: 15
   },
+
+  dropdown: {
+    dropdown: {
+      backgroundColor: colours.dropdownBg,
+      borderWidth: 1,
+      borderColor: colours.dropdownBorder,
+      borderRadius: 10,
+      paddingLeft: 0,
+      paddingRight: 10,
+      paddingVertical: 0,
+      marginBottom: 15
+    },
+    listItemContainerStyle: {
+      height: 'auto',
+      paddingHorizontal: 0,
+      paddingVertical: 0
+    },
+    text: {
+      fontSize: 20,
+      color: colours.dropdownFg,
+      padding: 10
+    },
+    arrowIconStyle: {
+      tintColor: colours.dropdownFg
+    },
+    tickIconStyle: {
+      tintColor: colours.dropdownFg
+    }
+  },
+
+  datePicker: {
+    alignItems: 'center'
+  },
+
   textInput: {
     fontSize: 20,
     color: colours.textInput,
@@ -27,6 +61,12 @@ const styles = StyleSheet.create({
   textInputMultiline: {
     height: 100,
     textAlignVertical: 'top'
+  },
+  deposit: {
+    color: colours.depositFg
+  },
+  withdrawal: {
+    color: colours.withdrawalFg
   },
   btnContainer: {
     flex: 1,
@@ -55,6 +95,12 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 20,
     color: colours.buttonFg
+  },
+  spinner: {
+    position: 'absolute',
+    zIndex: 999,
+    padding: 10,
+    alignSelf: 'center'
   }
 })
 
